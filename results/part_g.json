@@ -1,0 +1,52 @@
+{
+  "autograd_abs_derivative": {
+    "at_0": 0.0,
+    "at_+0.3": 1.0,
+    "at_-0.3": -1.0
+  },
+  "setup": {
+    "degree": 10,
+    "lipschitz_L": 12.787492159585657,
+    "lambda_max": 0.4271779772007338
+  },
+  "reference_lasso_theta": [
+    -0.044304947784064935,
+    -1.301397990991209,
+    0.0193457231912518,
+    2.3420466837970992,
+    -0.0,
+    -1.4637969515005387,
+    0.0,
+    -0.0,
+    0.004862616481728548,
+    0.20281208741925916
+  ],
+  "methods_degree10": {
+    "lambda_ridge": 0.0001,
+    "lambda_lasso": 0.001,
+    "iterations": 10000,
+    "rows": {
+      "OLS": {
+        "reference_test_mse": 0.0370185632715236,
+        "gd_test_mse": 0.019901003647624944,
+        "gd_relative_error": 0.9900379971016326,
+        "adam_test_mse": 0.02859816044667409,
+        "adam_relative_error": 0.8756332926007777
+      },
+      "Ridge": {
+        "reference_test_mse": 0.019886914589863018,
+        "gd_test_mse": 0.02038897104348259,
+        "gd_relative_error": 0.5451551379686298,
+        "adam_test_mse": 0.01989196448775178,
+        "adam_relative_error": 0.002261272107262495
+      },
+      "Lasso": {
+        "reference_test_mse": 0.01922132347609285,
+        "gd_test_mse": 0.021836757563566532,
+        "gd_relative_error": 0.5416907814308808,
+        "adam_test_mse": 0.019219876096015973,
+        "adam_relative_error": 0.000435249571129128
+      }
+    }
+  }
+}
