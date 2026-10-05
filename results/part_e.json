@@ -7,14 +7,14 @@
   },
   "timing": {
     "80": {
-      "cost_s": 5.067000165581703e-06,
-      "autograd_s": 8.003449998795986e-05,
-      "autograd_over_cost": 15.795243215424629
+      "cost_s": 4.3635000474751e-06,
+      "autograd_s": 7.887399988248944e-05,
+      "autograd_over_cost": 18.075856313586883
     },
     "1000000": {
-      "cost_s": 0.009976280014961958,
-      "autograd_s": 0.0296268800040707,
-      "autograd_over_cost": 2.969732200743934
+      "cost_s": 0.009840639983303845,
+      "autograd_s": 0.030097620002925395,
+      "autograd_over_cost": 3.058502298020314
     }
   },
   "degree6": {
@@ -28,6 +28,13 @@
     "gd_analytic_iterations": 14399,
     "gd_autograd_iterations": 14399,
     "max_theta_difference_analytic_vs_autograd": 4.440892098500626e-15,
+    "ridge_analytic_vs_autograd": {
+      "lambda": 0.001,
+      "eta_opt": 0.25960008471543405,
+      "gd_analytic_iterations": 9309,
+      "gd_autograd_iterations": 9309,
+      "max_theta_difference_analytic_vs_autograd": 3.3306690738754696e-16
+    },
     "learning_rate_scan": {
       "0.25": {
         "iterations": 57588,

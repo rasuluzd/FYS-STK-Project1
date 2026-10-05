@@ -129,15 +129,16 @@ def main():
     # training MSE and coefficient norm side by side. Test R^2 = 1 - MSE/var(y) on the same split, so it
     # carries no information beyond the test MSE.
     norms = np.array([np.linalg.norm(t, axis=1) for t in coefficient_paths])
-    ridge_shades = ordered_colors(len(PENALTIES) - 1, light=0.35, base=METHOD_COLORS["Ridge"])
-    styles = [(METHOD_COLORS["OLS"], "--")] + [(c, "-") for c in ridge_shades]
+    ridge_shades = ordered_colors(len(PENALTIES) - 1, light=0.05, base=METHOD_COLORS["Ridge"])
+    styles = [(METHOD_COLORS["OLS"], "--", None)] + [(c, "-", m) for c, m in zip(ridge_shades, "o^sD")]
     fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 2.45))
     panels = [(test_values, "Test MSE"), (train_values, "Training MSE"),
               (norms, r"$\|\theta\|_2$ (standardized features)")]
     for ax, (values, ylabel), tag in zip(axes, panels, ("(a)", "(b)", "(c)")):
         for j, label in enumerate(LABELS):
-            color, ls = styles[j]
-            ax.semilogy(DEGREES, values[:, j], ls, color=color, label=label)
+            color, ls, marker = styles[j]
+            ax.semilogy(DEGREES, values[:, j], ls, color=color, marker=marker, markersize=2.5,
+                        label=label)
         ax.set_xlabel("Polynomial degree $p$")
         ax.set_ylabel(ylabel)
         ax.set_xticks([1, 5, 10, 15, 20])

@@ -94,6 +94,21 @@ for name, auto in (("analytic", False), ("autograd", True)):
 info6["max_theta_difference_analytic_vs_autograd"] = np.max(np.abs(thetas["analytic"] -
                                                                   thetas["autograd"]))
 
+# the same paired run for Ridge (lambda = 1e-3), each at its own optimal rate
+LAM_AD = 1e-3
+lM_r, lm_r, _ = spectrum(X, LAM_AD)
+theta_ridge = ridge_parameters(X, y, LAM_AD)
+ridge_ad = {"lambda": LAM_AD, "eta_opt": 2 / (lM_r + lm_r)}
+thetas_r = {}
+for name, auto in (("analytic", False), ("autograd", True)):
+    th, inf = gradient_descent(make_gradient("ridge", X, y, LAM_AD, use_autograd=auto), np.zeros(P),
+                               GD(ridge_ad["eta_opt"]), 10**6, theta_ref=theta_ridge, tol=TOL)
+    thetas_r[name] = th
+    ridge_ad[f"gd_{name}_iterations"] = inf["iterations"]
+ridge_ad["max_theta_difference_analytic_vs_autograd"] = np.max(np.abs(thetas_r["analytic"] -
+                                                                    thetas_r["autograd"]))
+info6["ridge_analytic_vs_autograd"] = ridge_ad
+
 # fractions of the stability bound 2/h_max: slower below it, divergence above it
 fractions = [0.25, 0.5, 0.9, 0.99, 1.01]
 scan = {}
